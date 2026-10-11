@@ -1,0 +1,4 @@
+source_customer_id,full_name,email,phone,updated_at
+LOY-091,Asha R.,ASHA.RAO@example.test,9876500011,2026-02-02
+LOY-092,Neha Gupta,neha@example.test,9876500014,2026-01-11
+LOY-093,Unknown,no-email,9876500015,2026-01-12
