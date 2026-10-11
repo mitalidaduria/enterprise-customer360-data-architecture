@@ -1,4 +1,4 @@
-# Architecture requirements — hypothetical Customer 360 case study
+# Architecture requirements : hypothetical Customer 360 case study
 
 ## Business outcomes
 - Unified customer view across independently keyed source systems.
