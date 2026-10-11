@@ -1,3 +1,8 @@
+[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Tests](https://img.shields.io/badge/tests-passing-success.svg)](./tests)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Customer 360 | Enterprise Data Architecture Portfolio
 
 **Portfolio status:** Phase 1 runnable local proof of concept. **Data:** 100% synthetic. **Not a copy of any employer's systems.**
@@ -7,20 +12,34 @@ A hands-on, testable data architecture case study demonstrating canonical entity
 ## The business problem
 Five conceptual business domains (CRM, commerce, loyalty, returns, marketplace) use different customer identifiers and formats. The goal is to create a traceable enterprise customer view while minimizing duplicate masters and false merges.
 
-## Architecture (phase 1)
+## Architecture & Data Flow (Phase 1)
 
 ```mermaid
 flowchart TD
-    A[CRM synthetic feed] --> C[Bronze source records]
-    B[Loyalty synthetic feed] --> C
-    C --> D[Schema and business validations]
-    D --> E[Standardization]
-    E --> F[Deterministic identity resolution]
-    F --> G[Master customer + crosswalk]
-    G --> H[Attribute survivorship]
-    H --> I[Gold customer 360 export]
-    D --> J[Rejected records / DQ report]
-```
+    subgraph Sources ["Synthetic Source Feeds"]
+        CRM[CRM Feed]
+        Loyalty[Loyalty Feed]
+    end
+
+    subgraph Pipeline ["Data Pipeline & Engine"]
+        Val[Schema & Business Validation]
+        Std[Standardization & Cleansing]
+        ID[Deterministic Identity Resolution]
+        Surv[Attribute Survivorship]
+    end
+
+    subgraph Outputs ["Gold Layer & Governance"]
+        Master[Master Customer + Crosswalk]
+        Report[Rejected Records / DQ Report]
+    end
+
+    CRM --> Val
+    Loyalty --> Val
+    Val -->|Valid Rows| Std
+    Val -->|Invalid Rows| Report
+    Std --> ID
+    ID --> Surv
+    Surv --> Master
 
 > This is a reproducible, demonstrative architecture, not an assertion that the same exact pipeline ran at a former employer. Names and metrics from professional experience are intentionally omitted.
 
@@ -54,19 +73,3 @@ Outputs are written to `output/` (gitignored): `customer_master.csv`, `source_cr
 
 ## Status and limits
 Current implementation reads only two synthetic feeds, operates in batch, and resolves identity through verified exact email matches (not fuzzy MDM). It does not yet run on Databricks, use Spark/Delta, or implement real agentic AI. Ambiguous and shared identities are material limitations and are addressed in the roadmap.
-
-## Interview pitch (30 seconds)
-> I designed a reproducible Customer 360 architecture starting with source contracts and entity grain, then implemented ingestion validation, canonicalization, conservative cross-source identity matching, golden-record survivorship, and lineage exports. I documented trade-offs through ADRs and verified critical failure cases with tests. The next milestone is incremental Delta Lake processing with monitoring and review-based matching.
-
-## Safety
-Synthetic data only. No actual payment, customer, employer or credential data. Never commit API keys or confidential diagrams.
-
-If you already have `pytest` installed and do not want to install the package, you can run:
-
-```bash
-PYTHONPATH=src python -m pytest -q
-PYTHONPATH=src python -m customer360.pipeline
-```
-
-On Windows PowerShell, set `$env:PYTHONPATH="src"` before these commands.
-#
