@@ -8,3 +8,4 @@ __pycache__/
 !.env.example
 output/
 .DS_Store
+interviewstory.md
