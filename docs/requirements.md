@@ -12,7 +12,7 @@
 - Track source identifiers and surviving attribute provenance.
 - Produce quality metrics, customer master, and crosswalk exports.
 
-## Non-functional targets — proposed, not validated
+## Non-functional targets, proposed, not validated
 - Idempotent reruns with stable master IDs for unchanged normalized email.
 - Deterministic, testable outputs; no production data.
 - Future scalability to incremental Spark/Delta pipeline.
