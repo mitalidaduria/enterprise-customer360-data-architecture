@@ -9,4 +9,3 @@
 | 5 — AI enrichment | guarded applied AI | embedding-based candidate matching, review thresholds, evaluation report, optional grounded LLM summary | labeled eval set and precision/recall reporting |
 | 6 — recruiter presentation | business and decision narrative | 2-minute walkthrough, public demo, decision matrix, cost model, results | independent reviewer can reproduce all claims |
 
-Do not claim a phase is complete until code and evidence support it.
