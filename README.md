@@ -3,11 +3,6 @@
 [![Tests](https://img.shields.io/badge/tests-passing-success.svg)](./tests)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Customer 360 | Enterprise Data Architecture Portfolio
-
-**Portfolio status:** Phase 1 runnable local proof of concept. **Data:** 100% synthetic. **Not a copy of any employer's systems.**
-
-A hands-on, testable data architecture case study demonstrating canonical entity modeling, source-to-target mapping, deterministic identity resolution, attribute survivorship, data quality gates, and lineage. Built as a local-first foundation for a future Databricks/Delta Lake + AI extension.
 
 ## The business problem
 Five conceptual business domains (CRM, commerce, loyalty, returns, marketplace) use different customer identifiers and formats. The goal is to create a traceable enterprise customer view while minimizing duplicate masters and false merges.
