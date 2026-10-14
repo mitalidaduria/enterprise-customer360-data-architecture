@@ -36,8 +36,6 @@ flowchart TD
     ID --> Surv
     Surv --> Master
 
-> This is a reproducible, demonstrative architecture, not an assertion that the same exact pipeline ran at a former employer. Names and metrics from professional experience are intentionally omitted.
-
 ## Quickstart
 Requirements: Python 3.10+.
 
