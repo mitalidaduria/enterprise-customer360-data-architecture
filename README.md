@@ -36,7 +36,6 @@ flowchart TD
     ID --> Surv
     Surv --> Master
 
-## Quickstart
 Requirements: Python 3.10+.
 
 ```bash
