@@ -35,7 +35,7 @@ flowchart TD
     Std --> ID
     ID --> Surv
     Surv --> Master
-
+```
 Requirements: Python 3.10+.
 
 ```bash
